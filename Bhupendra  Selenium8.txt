@@ -1,0 +1,137 @@
+Q1.package Seleinium2nSession.Seleinium2nSession;
+
+import java.util.Iterator;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BrowserWindowPupUp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/login");
+		driver.findElement(By.xpath("//img[@alt = 'LinkedIn OrangeHRM group']")).click();
+		driver.findElement(By.xpath("//img[@alt = 'OrangeHRM on Facebook']")).click();
+		driver.findElement(By.xpath("//img[@alt = 'OrangeHRM on twitter']")).click();
+		driver.findElement(By.xpath("//img[@alt ='OrangeHRM on youtube']")).click();
+		System.out.println(driver.getTitle());
+		
+		Set<String> handles = driver.getWindowHandles(); 
+		Iterator<String> itr = handles.iterator();
+		
+		String parentWindow = itr.next();
+		System.out.println(parentWindow);
+		
+		String childWindow1 = itr.next();
+		System.out.println(childWindow1);
+		
+		String childWindow2 = itr.next();
+		System.out.println(childWindow2);
+		
+		String childWindow3 = itr.next();
+		System.out.println(childWindow3);
+		
+		String childWindow4 = itr.next();
+		System.out.println(childWindow4);
+		
+		
+		//lets switch the window
+		driver.switchTo().window(childWindow1);
+		driver.getTitle();
+		System.out.println(driver.getTitle());
+		
+		driver.switchTo().window(childWindow2);
+		driver.getTitle();
+		System.out.println(driver.getTitle());
+		
+		driver.switchTo().window(childWindow3);
+		driver.getTitle();
+		System.out.println(driver.getTitle());
+		
+		driver.switchTo().window(childWindow4);
+		driver.getTitle();
+		System.out.println(driver.getTitle());
+		
+		
+		driver.switchTo().window(parentWindow);
+		System.out.println(driver.getTitle());
+		
+		
+	}
+
+}
+
+
+Q2.package Seleinium2nSession.Seleinium2nSession;
+import java.util.Iterator;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class WindowHandelling {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/login");
+		driver.findElement(By.xpath("//img[@alt = 'LinkedIn OrangeHRM group']")).click();
+		driver.findElement(By.xpath("//img[@alt = 'OrangeHRM on Facebook']")).click();
+		driver.findElement(By.xpath("//img[@alt = 'OrangeHRM on twitter']")).click();
+		driver.findElement(By.xpath("//img[@alt ='OrangeHRM on youtube']")).click();
+		System.out.println(driver.getTitle());
+		
+		Set<String> handles = driver.getWindowHandles(); 
+		Iterator<String> itr = handles.iterator();
+		
+		String parentWindow = itr.next();
+		System.out.println(parentWindow);
+		
+		String childWindow1 = itr.next();
+		System.out.println(childWindow1);
+		
+		driver.switchTo().window(childWindow1);
+		driver.getTitle();
+		driver.close();
+		System.out.println(driver.getTitle());
+		
+		String childWindow2 = itr.next();
+		System.out.println(childWindow2);
+		
+		driver.switchTo().window(childWindow2);
+		driver.getTitle();
+		driver.close();
+		System.out.println(driver.getTitle());
+		
+		String childWindow3 = itr.next();
+		System.out.println(childWindow3);
+		
+		driver.switchTo().window(childWindow3);
+		driver.getTitle();
+		driver.close();
+		System.out.println(driver.getTitle());
+		
+		String childWindow4 = itr.next();
+		System.out.println(childWindow2);
+		
+		driver.switchTo().window(childWindow4);
+		driver.getTitle();
+		driver.close();
+		System.out.println(driver.getTitle());
+		
+		driver.switchTo().window(parentWindow);
+		System.out.println(driver.getTitle());
+			
+
+	}
+
+}
